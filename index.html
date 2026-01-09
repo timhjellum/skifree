@@ -1,373 +1,306 @@
 <style>
-
-
 :root {
-  --color-1: #e64c65;
-  --color-2: #11a8ab;
-  --color-3: #fcb150;
-  --color-4: #4fc4f6;
-  --color-5: #ffed0d;
-  --color-6: #f46fda;
-  --color-7: #15bfcc;
+  --color-1: #0096d7;
+  --color-2: #5d9732;
+  --color-3: #a33340;
+  --color-4: #ffc702;
+  --color-5: #ff6f1f;
+  --color-6: #513c7a;
+  --color-7: #bd732a;
 }
-/******************************************
-GRAFICO CIRCULAR PIE CHART
-******************************************/
-.donut-chart {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  aspect-ratio: 1;
-  margin: 0 auto 2rem;
-  border-radius: 100%;
-}
-p.center-date {
-  background: #fff;
-  position: absolute;
-  text-align: center;
-  font-size: 28px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 130px;
-  height: 130px;
-  margin: auto;
-  border-radius: 50%;
-  line-height: 35px;
-  padding: 15% 0 0;
-}
-.center-date span.secondary {
-  line-height: 0;
-}
-.sector {
-  border-radius: 50%;
-  clip: rect(0px, 200px, 200px, 100px);
-  height: 100%;
-  position: absolute;
-  width: 100%;
-}
-.pie {
-  border-radius: 50%;
-  clip: rect(0px, 100px, 200px, 0px);
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  font-family: monospace;
-  font-size: 1.5rem;
-}
-#sector1 {
-  transform: rotate(0deg);
-}
-
-#sector1 .pie {
-  background-color: var(--color-1);
-  transform: rotate(76deg);
-}
-#sector2 {
-  transform: rotate(76deg);
-}
-#sector2 .pie {
-  background-color: var(--color-2);
-  transform: rotate(140deg);
-}
-#sector3 {
-  transform: rotate(215deg);
-}
-#sector3 .pie {
-  background-color: var(--color-3);
-  transform: rotate(113deg);
-}
-#sector4 {
-  transform: rotate(-32deg);
-}
-#sector4 .pie {
-  background-color: var(--color-4);
-  transform: rotate(32deg);
-}
-
-.donut-chart-block {
-  overflow: hidden;
-}
-.donut-chart-block .titular {
-  padding: 10px 0;
-}
-.legends li {
-  width: 75px;
-  text-align: center;
-  //background: #50597b;
-}
-.vertical {
-  margin: 0;
-  padding: 10px 0 5px;
-  font-size: 15px;
-}
-.vertical.sector-1 {
-  border-top: 4px solid var(--color-1);
-}
-.vertical.sector-2 {
-  border-top: 4px solid var(--color-2);
-}
-.vertical.sector-3 {
-  border-top: 4px solid var(--color-3);
-}
-.vertical.sector-4 {
-  border-top: 4px solid var(--color-4);
-}
-.legend {
-  margin: 0;
-  padding: 0 0 15px 10px;
-  font-size: 25px;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-.horizontal-list {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.horizontal-list li {
-  float: left;
-}
-
-.block {
-  width: 75%;
-  overflow: hidden;
-}
-
-/******************************************** LEFT CONTAINER *****************************************/
-
-.bar-chart-block {
-  height: 400px;
-}
-
 .dummy-charts {
-  padding: 2rem 1rem 1rem;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  font-size: 1em;
-}
-.dummy-charts span {
-  display: block;
-  position: absolute;
-  bottom: 3rem;
-  left: 2rem;
-  height: 0;
-  border-top: 2px solid;
-  transform-origin: left center;
-}
-.dummy-charts span > span {
-  left: 100%;
-  bottom: 0;
-}
-[data-value="25"] {
-  width: 75px;
-  transform: rotate(-45deg);
-}
-[data-value="8"] {
-  width: 24px;
-  transform: rotate(65deg);
-}
-[data-value="13"] {
-  width: 39px;
-  transform: rotate(-45deg);
-}
-[data-value="5"] {
-  width: 15px;
-  transform: rotate(50deg);
-}
-[data-value="23"] {
-  width: 69px;
-  transform: rotate(-70deg);
-}
-[data-value="12"] {
-  width: 36px;
-  transform: rotate(75deg);
-}
-[data-value="15"] {
-  width: 45px;
-  transform: rotate(-45deg);
-}
+  h2 {
+    padding: 10px 0;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+  }
 
-[data-value]:before {
-  content: "";
-  position: absolute;
-  display: block;
-  right: -4px;
-  bottom: -3px;
-  padding: 4px;
-  background: #fff;
-  border-radius: 50%;
-}
-[data-value="23"]:after {
-  content: "+" attr(data-value) "%";
-  position: absolute;
-  right: -2.7rem;
-  top: -1.7rem;
-  padding: 0.3rem 0.5rem;
-  background: #50597b;
-  border-radius: 0.5rem;
-  transform: rotate(45deg);
-}
-[class^="axis-"] {
-  position: absolute;
-  left: 0;
-  bottom: 0rem;
-  width: 100%;
-  padding: 1rem 1rem 0 2rem;
-  height: 80%;
-}
-.axis-x {
-  height: 2.5rem;
-}
-.axis-y li {
-  height: 25%;
-  border-top: 1px solid #777;
-}
-[data-axisY]:before {
-  content: attr(data-axisY);
-  display: inline-block;
-  width: 2rem;
-  text-align: right;
-  line-height: 0;
-  position: relative;
-  left: -2.5rem;
-  top: -0.5rem;
-}
-.axis-x li {
-  width: 33%;
-  float: left;
-  text-align: center;
-}
+  .horizontal-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
 
-.nota-final strong {
-  color: #e64c65;
-}
-.nota-final a {
-  color: #fcb150;
-  font-size: inherit;
-}
-/**************************
-BAR-CHART
-**************************/
-.dummy-charts.bar-chart {
-  //background: #3468AF;
-  padding: 0 1rem 2rem 1rem;
-  width: 100%;
-  height: 60%;
-  position: relative;
-  //color: #fff;
-  font-size: 1em;
-}
-.bar-chart [class^="axis-"] {
-  padding: 0 1rem 0 2rem;
-  bottom: 1rem;
-}
-.bar-chart .axis-x {
-  bottom: 0;
-}
-.bar-chart .axis-y li {
-  height: 20%;
-  border-top: 1px solid #fff;
-}
-.bar-chart .axis-x li {
-  width: 14%;
-  position: relative;
-  text-align: left;
-}
-.bar-chart .axis-x li i {
-  transform: rotatez(-45deg) translatex(-1rem);
-  transform-origin: 30% 60%;
-  display: block;
-}
-.bar-chart .axis-x li:before {
-  content: "";
-  position: absolute;
-  bottom: 1.9rem;
-  width: 70%;
-  right: 5%;
-  box-shadow: 3px 0 rgba(0, 0, 0, 0.1), 3px -3px rgba(0, 0, 0, 0.1);
-}
-.bar-chart .axis-x li:nth-child(1):before {
-  background: var(--color-1); //#E64C65;
-  height: 570%;
-}
-.bar-chart .axis-x li:nth-child(2):before {
-  background: var(--color-2); // #11A8AB;
-  height: 900%;
-}
-.bar-chart .axis-x li:nth-child(3):before {
-  background: var(--color-3); // #FCB150;
-  height: 400%;
-}
-.bar-chart .axis-x li:nth-child(4):before {
-  background: var(--color-4); // #4FC4F6;
-  height: 290%;
-}
-.bar-chart .axis-x li:nth-child(5):before {
-  background: var(--color-5); // #FFED0D;
-  height: 720%;
-}
-.bar-chart .axis-x li:nth-child(6):before {
-  background: var(--color-6); // #F46FDA;
-  height: 820%;
-}
-.bar-chart .axis-x li:nth-child(7):before {
-  background: var(--color-7); // #15BFCC;
-  height: 520%;
+  .horizontal-list li {
+    float: left;
+  }
+
+  .block {
+    width: 75%;
+    overflow: hidden;
+  }
+  > div {
+    padding: 2rem 1rem 1rem;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 1em;
+    span {
+      //display: block;
+      //position: absolute;
+      //bottom: 3rem;
+      //left: 2rem;
+      //height: 0;
+      //border-top: 2px solid;
+      //transform-origin: left center;
+      > span {
+        left: 100%;
+        bottom: 0;
+      }
+    }
+  }
+  .donut-chart {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1;
+    margin: 0 auto 2rem;
+    border-radius: 100%;
+  }
+  .donut-hole {
+    background: #fff;
+    position: absolute;
+    text-align: center;
+    font-size: 28px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 130px;
+    height: 130px;
+    margin: auto;
+    border-radius: 50%;
+    line-height: 35px;
+    padding: 15% 0 0;
+  }
+  .center-date span.secondary {
+    line-height: 0;
+  }
+  .sector {
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+  .pie {
+    border-radius: 50%;
+    clip: rect(0px, 100px, 200px, 0px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    font-family: monospace;
+    font-size: 1.5rem;
+  }
+  #sector1 {
+    transform: rotate(0deg);
+  }
+
+  #sector1 .pie {
+    background-color: var(--color-1);
+    transform: rotate(76deg);
+  }
+  #sector2 {
+    transform: rotate(76deg);
+  }
+  #sector2 .pie {
+    background-color: var(--color-2);
+    transform: rotate(140deg);
+  }
+  #sector3 {
+    transform: rotate(215deg);
+  }
+  #sector3 .pie {
+    background-color: var(--color-3);
+    transform: rotate(113deg);
+  }
+  #sector4 {
+    transform: rotate(-32deg);
+  }
+  #sector4 .pie {
+    background-color: var(--color-4);
+    transform: rotate(32deg);
+  }
+
+  .donut-chart-block {
+    overflow: hidden;
+  }
+
+  .legends li {
+    width: 75px;
+    text-align: center;
+    //background: #50597b;
+  }
+  .vertical {
+    margin: 0;
+    padding: 10px 0 5px;
+    font-size: 15px;
+  }
+  .vertical.sector-1 {
+    border-top: 4px solid var(--color-1);
+  }
+  .vertical.sector-2 {
+    border-top: 4px solid var(--color-2);
+  }
+  .vertical.sector-3 {
+    border-top: 4px solid var(--color-3);
+  }
+  .vertical.sector-4 {
+    border-top: 4px solid var(--color-4);
+  }
+  .legend {
+    margin: 0;
+    padding: 0 0 15px 10px;
+    font-size: 25px;
+  }
+
+  .bar-chart-block {
+    height: 500px;
+  }
+
+  .bar-chart {
+    //background: #3468AF;
+    padding: 0 1rem 2rem 1rem;
+    width: 100%;
+    height: 60%;
+    position: relative;
+    //color: #fff;
+    font-size: 1em;
+    [class^="axis-"] {
+      position: absolute;
+      left: 0;
+      bottom: 0rem;
+      width: 100%;
+      padding: 1rem 1rem 0 2rem;
+      height: 80%;
+    }
+    .axis-x {
+      height: 3rem;
+    }
+    .axis-y li {
+      height: 25%;
+      border-top: 1px solid #777;
+    }
+    [data-axisY]:before {
+      content: attr(data-axisY);
+      display: inline-block;
+      width: 2rem;
+      text-align: right;
+      line-height: 0;
+      position: relative;
+      left: -2.5rem;
+      top: -0.5rem;
+    }
+    .axis-x li {
+      //  width: 33%;
+      float: left;
+      text-align: center;
+    }
+    [class^="axis-"] {
+      padding: 0 1rem 0 2rem;
+      bottom: 1rem;
+    }
+    .axis-x {
+      bottom: 0;
+    }
+    .axis-y li {
+      height: 20%;
+      border-top: 1px solid #333333;
+    }
+    .axis-x li {
+      width: 14%;
+      position: relative;
+      text-align: left;
+    }
+    .axis-x li i {
+      transform: rotatez(-45deg) translatex(-1rem);
+      transform-origin: 30% 60%;
+      display: block;
+    }
+    .axis-x li:before {
+      content: "";
+      position: absolute;
+      bottom: 1.9rem;
+      width: 70%;
+      right: 5%;
+      box-shadow: 3px 0 rgba(0, 0, 0, 0.1), 3px -3px rgba(0, 0, 0, 0.1);
+    }
+    .axis-x li:nth-child(1):before {
+      background: var(--color-1); //#E64C65;
+      height: 570%;
+    }
+    .axis-x li:nth-child(2):before {
+      background: var(--color-2); // #11A8AB;
+      height: 900%;
+    }
+    .axis-x li:nth-child(3):before {
+      background: var(--color-3); // #FCB150;
+      height: 400%;
+    }
+    .axis-x li:nth-child(4):before {
+      background: var(--color-4); // #4FC4F6;
+      height: 290%;
+    }
+    .axis-x li:nth-child(5):before {
+      background: var(--color-5); // #FFED0D;
+      height: 720%;
+    }
+    .axis-x li:nth-child(6):before {
+      background: var(--color-6); // #F46FDA;
+      height: 820%;
+    }
+    .axis-x li:nth-child(7):before {
+      background: var(--color-7); // #15BFCC;
+      height: 520%;
+    }
+  }
 }
 </style>
-<section>
-<div class="donut-chart-block block">
+  <div class="donut-chart-block block">
     <h2>Sample Energy Chart</h2>
     <div class="donut-chart">
-        <div id="sector1" class="sector">
-            <div class="pie sector-1" data-rel="21"></div>
-        </div>
-        <div id="sector2" class="sector">
-            <div class="pie sector-2" data-rel="39"></div>
-        </div>
-        <div id="sector3" class="sector">
-            <div class="pie sector-4" data-rel="31"></div>
-        </div>
-        <div id="sector4" class="sector">
-            <div class="pie sector-3" data-rel="9"></div>
-        </div>
-        <!-- FIN AÑADIDO GRÄFICO -->
-        <p class="center-date">JUNE<br><span class="secondary">2026</span></p>
+      <div id="sector1" class="sector">
+        <div class="pie sector-1" data-rel="21"></div>
+      </div>
+      <div id="sector2" class="sector">
+        <div class="pie sector-2" data-rel="39"></div>
+      </div>
+      <div id="sector3" class="sector">
+        <div class="pie sector-4" data-rel="31"></div>
+      </div>
+      <div id="sector4" class="sector">
+        <div class="pie sector-3" data-rel="9"></div>
+      </div>
+      <p class="donut-hole">JUNE<br><span class="secondary">2026</span></p>
     </div>
     <ul class="legends horizontal-list">
-        <li>
-            <p class="ios vertical secondary">Sector 1</p>
-            <p class="legend">21<sup>%</sup></p>
-        </li>
-        <li>
-            <p class="sector-2 vertical secondary">Sector 2</p>
-            <p class="legend">39<sup>%</sup></p>
-        </li>
-        <li>
-            <p class="sector-3 vertical secondary">Sector 3</p>
-            <p class="legend">9<sup>%</sup></p>
-        </li>
-        <li>
-            <p class="sector-4 vertical secondary">Sector 4</p>
-            <p class="legend">31<sup>%</sup></p>
-        </li>
+      <li>
+        <p class="ios vertical secondary">Sector 1</p>
+        <p class="legend">21<sup>%</sup></p>
+      </li>
+      <li>
+        <p class="sector-2 vertical secondary">Sector 2</p>
+        <p class="legend">39<sup>%</sup></p>
+      </li>
+      <li>
+        <p class="sector-3 vertical secondary">Sector 3</p>
+        <p class="legend">9<sup>%</sup></p>
+      </li>
+      <li>
+        <p class="sector-4 vertical secondary">Sector 4</p>
+        <p class="legend">31<sup>%</sup></p>
+      </li>
     </ul>
-</div>
+  </div>
 </section>
- 
-<section>
+
+<section class="dummy-charts">
   <div class="bar-chart-block block">
-    <h2 class='titular'>By Country <span>*1000</span></h2>
-    <div class='dummy-charts bar-chart'>
+    <h2>Regions <span>*1000</span></h2>
+    <div class='bar-chart'>
       <ul class='axis-y'>
         <li data-axisY='60'></li>
         <li data-axisY='45'></li>
@@ -376,13 +309,13 @@ BAR-CHART
         <li data-axisY='0'></li>
       </ul>
       <ul class='axis-x'>
-        <li data-axisX='37'><i>España</i></li>
-        <li data-axisX='56'><i>Portugal</i></li>
-        <li data-axisX='25'><i>Italia</i></li>
-        <li data-axisX='18'><i>Grecia</i></li>
-        <li data-axisX='45'><i>EE.UU</i></li>
-        <li data-axisX='50'><i>México</i></li>
-        <li data-axisX='33'><i>Chile</i></li>
+        <li data-axisX='37'><i>Region 1</i></li>
+        <li data-axisX='56'><i>Region 2</i></li>
+        <li data-axisX='25'><i>Region 3</i></li>
+        <li data-axisX='18'><i>Region 4</i></li>
+        <li data-axisX='45'><i>Region 5</i></li>
+        <li data-axisX='50'><i>Region 6</i></li>
+        <li data-axisX='33'><i>Region 7</i></li>
       </ul>
     </div>
   </div>
