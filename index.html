@@ -1,3 +1,136 @@
+<style>
+
+    
+
+/******************************************
+GRAFICO CIRCULAR PIE CHART
+******************************************/
+.donut-chart {
+position: relative;
+width: 200px;
+height: 200px;
+aspect-ratio: 1;
+margin: 0 auto 2rem;
+border-radius: 100%
+}
+p.center-date {
+background: #fff;
+position: absolute;
+text-align: center;
+font-size: 28px;
+top:0;left:0;bottom:0;right:0;
+width: 130px;
+height: 130px;
+margin: auto;
+border-radius: 50%;
+line-height: 35px;
+padding: 15% 0 0;
+}
+.center-date span.secondary {
+line-height: 0;
+}
+.sector {
+border-radius: 50%;
+clip: rect(0px, 200px, 200px, 100px);
+height: 100%;
+position: absolute;
+width: 100%;
+}
+.pie {
+border-radius: 50%;
+clip: rect(0px, 100px, 200px, 0px);
+height: 100%;
+position: absolute;
+width: 100%;
+font-family: monospace;
+font-size: 1.5rem;
+}
+#sector1 {
+transform: rotate(0deg);
+}
+
+#sector1 .pie {
+background-color: #E64C65;
+transform: rotate(76deg);
+}
+#sector2 {
+transform: rotate(76deg);
+}
+#sector2 .pie {
+background-color: #11A8AB;
+transform: rotate(140deg);
+}
+#sector3 {
+transform: rotate(215deg);
+}
+#sector3 .pie {
+background-color: #4FC4F6;
+transform: rotate(113deg);
+}
+#sector4 {
+transform:rotate(-32deg);
+}
+#sector4 .pie {
+background-color: #FCB150;
+transform: rotate(32deg);
+}
+
+.donut-chart-block {
+overflow: hidden;
+}
+.donut-chart-block .titular {
+padding: 10px 0;
+}
+.legends li {
+width: 75px;
+text-align: center;
+//background: #50597b;
+}
+.vertical {
+margin: 0;
+padding: 10px 0 5px;
+font-size: 15px;
+}
+.vertical.ios {
+border-top: 4px solid #e64c65;
+}
+.vertical.sector-2 {
+border-top: 4px solid #11a8ab;
+}
+.vertical.sector-3 {
+border-top: 4px solid #fcb150;
+}
+.vertical.sector-4 {
+border-top: 4px solid #4fc4f6;
+}
+.legend {
+margin: 0;
+padding: 0 0 15px 10px;
+font-size: 25px;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+.horizontal-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+	.horizontal-list li {
+		float: left;
+	}
+
+.block {
+      width: 75%;
+      overflow: hidden;
+		}
+    
+</style>
+
 <div class="donut-chart-block block">
     <h2>Sample Energy Chart</h2>
     <div class="donut-chart">
