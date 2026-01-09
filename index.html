@@ -1,136 +1,330 @@
 <style>
 
-    
 
+:root {
+  --color-1: #e64c65;
+  --color-2: #11a8ab;
+  --color-3: #fcb150;
+  --color-4: #4fc4f6;
+  --color-5: #ffed0d;
+  --color-6: #f46fda;
+  --color-7: #15bfcc;
+}
 /******************************************
 GRAFICO CIRCULAR PIE CHART
 ******************************************/
 .donut-chart {
-position: relative;
-width: 200px;
-height: 200px;
-aspect-ratio: 1;
-margin: 0 auto 2rem;
-border-radius: 100%
+  position: relative;
+  width: 200px;
+  height: 200px;
+  aspect-ratio: 1;
+  margin: 0 auto 2rem;
+  border-radius: 100%;
 }
 p.center-date {
-background: #fff;
-position: absolute;
-text-align: center;
-font-size: 28px;
-top:0;left:0;bottom:0;right:0;
-width: 130px;
-height: 130px;
-margin: auto;
-border-radius: 50%;
-line-height: 35px;
-padding: 15% 0 0;
+  background: #fff;
+  position: absolute;
+  text-align: center;
+  font-size: 28px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 130px;
+  height: 130px;
+  margin: auto;
+  border-radius: 50%;
+  line-height: 35px;
+  padding: 15% 0 0;
 }
 .center-date span.secondary {
-line-height: 0;
+  line-height: 0;
 }
 .sector {
-border-radius: 50%;
-clip: rect(0px, 200px, 200px, 100px);
-height: 100%;
-position: absolute;
-width: 100%;
+  border-radius: 50%;
+  clip: rect(0px, 200px, 200px, 100px);
+  height: 100%;
+  position: absolute;
+  width: 100%;
 }
 .pie {
-border-radius: 50%;
-clip: rect(0px, 100px, 200px, 0px);
-height: 100%;
-position: absolute;
-width: 100%;
-font-family: monospace;
-font-size: 1.5rem;
+  border-radius: 50%;
+  clip: rect(0px, 100px, 200px, 0px);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  font-family: monospace;
+  font-size: 1.5rem;
 }
 #sector1 {
-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 #sector1 .pie {
-background-color: #E64C65;
-transform: rotate(76deg);
+  background-color: var(--color-1);
+  transform: rotate(76deg);
 }
 #sector2 {
-transform: rotate(76deg);
+  transform: rotate(76deg);
 }
 #sector2 .pie {
-background-color: #11A8AB;
-transform: rotate(140deg);
+  background-color: var(--color-2);
+  transform: rotate(140deg);
 }
 #sector3 {
-transform: rotate(215deg);
+  transform: rotate(215deg);
 }
 #sector3 .pie {
-background-color: #4FC4F6;
-transform: rotate(113deg);
+  background-color: var(--color-3);
+  transform: rotate(113deg);
 }
 #sector4 {
-transform:rotate(-32deg);
+  transform: rotate(-32deg);
 }
 #sector4 .pie {
-background-color: #FCB150;
-transform: rotate(32deg);
+  background-color: var(--color-4);
+  transform: rotate(32deg);
 }
 
 .donut-chart-block {
-overflow: hidden;
+  overflow: hidden;
 }
 .donut-chart-block .titular {
-padding: 10px 0;
+  padding: 10px 0;
 }
 .legends li {
-width: 75px;
-text-align: center;
-//background: #50597b;
+  width: 75px;
+  text-align: center;
+  //background: #50597b;
 }
 .vertical {
-margin: 0;
-padding: 10px 0 5px;
-font-size: 15px;
+  margin: 0;
+  padding: 10px 0 5px;
+  font-size: 15px;
 }
-.vertical.ios {
-border-top: 4px solid #e64c65;
+.vertical.sector-1 {
+  border-top: 4px solid var(--color-1);
 }
 .vertical.sector-2 {
-border-top: 4px solid #11a8ab;
+  border-top: 4px solid var(--color-2);
 }
 .vertical.sector-3 {
-border-top: 4px solid #fcb150;
+  border-top: 4px solid var(--color-3);
 }
 .vertical.sector-4 {
-border-top: 4px solid #4fc4f6;
+  border-top: 4px solid var(--color-4);
 }
 .legend {
-margin: 0;
-padding: 0 0 15px 10px;
-font-size: 25px;
+  margin: 0;
+  padding: 0 0 15px 10px;
+  font-size: 25px;
 }
+
 ul {
-	list-style-type: none;
-	margin: 0;
-	padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
 }
 
 .horizontal-list {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
-	.horizontal-list li {
-		float: left;
-	}
+.horizontal-list li {
+  float: left;
+}
 
 .block {
-      width: 75%;
-      overflow: hidden;
-		}
-    
-</style>
+  width: 75%;
+  overflow: hidden;
+}
 
+/******************************************** LEFT CONTAINER *****************************************/
+
+.bar-chart-block {
+  height: 400px;
+}
+
+.dummy-charts {
+  padding: 2rem 1rem 1rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-size: 1em;
+}
+.dummy-charts span {
+  display: block;
+  position: absolute;
+  bottom: 3rem;
+  left: 2rem;
+  height: 0;
+  border-top: 2px solid;
+  transform-origin: left center;
+}
+.dummy-charts span > span {
+  left: 100%;
+  bottom: 0;
+}
+[data-value="25"] {
+  width: 75px;
+  transform: rotate(-45deg);
+}
+[data-value="8"] {
+  width: 24px;
+  transform: rotate(65deg);
+}
+[data-value="13"] {
+  width: 39px;
+  transform: rotate(-45deg);
+}
+[data-value="5"] {
+  width: 15px;
+  transform: rotate(50deg);
+}
+[data-value="23"] {
+  width: 69px;
+  transform: rotate(-70deg);
+}
+[data-value="12"] {
+  width: 36px;
+  transform: rotate(75deg);
+}
+[data-value="15"] {
+  width: 45px;
+  transform: rotate(-45deg);
+}
+
+[data-value]:before {
+  content: "";
+  position: absolute;
+  display: block;
+  right: -4px;
+  bottom: -3px;
+  padding: 4px;
+  background: #fff;
+  border-radius: 50%;
+}
+[data-value="23"]:after {
+  content: "+" attr(data-value) "%";
+  position: absolute;
+  right: -2.7rem;
+  top: -1.7rem;
+  padding: 0.3rem 0.5rem;
+  background: #50597b;
+  border-radius: 0.5rem;
+  transform: rotate(45deg);
+}
+[class^="axis-"] {
+  position: absolute;
+  left: 0;
+  bottom: 0rem;
+  width: 100%;
+  padding: 1rem 1rem 0 2rem;
+  height: 80%;
+}
+.axis-x {
+  height: 2.5rem;
+}
+.axis-y li {
+  height: 25%;
+  border-top: 1px solid #777;
+}
+[data-axisY]:before {
+  content: attr(data-axisY);
+  display: inline-block;
+  width: 2rem;
+  text-align: right;
+  line-height: 0;
+  position: relative;
+  left: -2.5rem;
+  top: -0.5rem;
+}
+.axis-x li {
+  width: 33%;
+  float: left;
+  text-align: center;
+}
+
+.nota-final strong {
+  color: #e64c65;
+}
+.nota-final a {
+  color: #fcb150;
+  font-size: inherit;
+}
+/**************************
+BAR-CHART
+**************************/
+.dummy-charts.bar-chart {
+  //background: #3468AF;
+  padding: 0 1rem 2rem 1rem;
+  width: 100%;
+  height: 60%;
+  position: relative;
+  //color: #fff;
+  font-size: 1em;
+}
+.bar-chart [class^="axis-"] {
+  padding: 0 1rem 0 2rem;
+  bottom: 1rem;
+}
+.bar-chart .axis-x {
+  bottom: 0;
+}
+.bar-chart .axis-y li {
+  height: 20%;
+  border-top: 1px solid #fff;
+}
+.bar-chart .axis-x li {
+  width: 14%;
+  position: relative;
+  text-align: left;
+}
+.bar-chart .axis-x li i {
+  transform: rotatez(-45deg) translatex(-1rem);
+  transform-origin: 30% 60%;
+  display: block;
+}
+.bar-chart .axis-x li:before {
+  content: "";
+  position: absolute;
+  bottom: 1.9rem;
+  width: 70%;
+  right: 5%;
+  box-shadow: 3px 0 rgba(0, 0, 0, 0.1), 3px -3px rgba(0, 0, 0, 0.1);
+}
+.bar-chart .axis-x li:nth-child(1):before {
+  background: var(--color-1); //#E64C65;
+  height: 570%;
+}
+.bar-chart .axis-x li:nth-child(2):before {
+  background: var(--color-2); // #11A8AB;
+  height: 900%;
+}
+.bar-chart .axis-x li:nth-child(3):before {
+  background: var(--color-3); // #FCB150;
+  height: 400%;
+}
+.bar-chart .axis-x li:nth-child(4):before {
+  background: var(--color-4); // #4FC4F6;
+  height: 290%;
+}
+.bar-chart .axis-x li:nth-child(5):before {
+  background: var(--color-5); // #FFED0D;
+  height: 720%;
+}
+.bar-chart .axis-x li:nth-child(6):before {
+  background: var(--color-6); // #F46FDA;
+  height: 820%;
+}
+.bar-chart .axis-x li:nth-child(7):before {
+  background: var(--color-7); // #15BFCC;
+  height: 520%;
+}
+</style>
+<section>
 <div class="donut-chart-block block">
     <h2>Sample Energy Chart</h2>
     <div class="donut-chart">
@@ -168,3 +362,28 @@ ul {
         </li>
     </ul>
 </div>
+</section>
+ 
+<section>
+  <div class="bar-chart-block block">
+    <h2 class='titular'>By Country <span>*1000</span></h2>
+    <div class='dummy-charts bar-chart'>
+      <ul class='axis-y'>
+        <li data-axisY='60'></li>
+        <li data-axisY='45'></li>
+        <li data-axisY='30'></li>
+        <li data-axisY='15'></li>
+        <li data-axisY='0'></li>
+      </ul>
+      <ul class='axis-x'>
+        <li data-axisX='37'><i>España</i></li>
+        <li data-axisX='56'><i>Portugal</i></li>
+        <li data-axisX='25'><i>Italia</i></li>
+        <li data-axisX='18'><i>Grecia</i></li>
+        <li data-axisX='45'><i>EE.UU</i></li>
+        <li data-axisX='50'><i>México</i></li>
+        <li data-axisX='33'><i>Chile</i></li>
+      </ul>
+    </div>
+  </div>
+</section>
