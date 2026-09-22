@@ -1,28 +1,18 @@
 import './styles.less';
-import './images/apple-touch-icon.png';
-import './images/mstile-150x150.png';
-import './images/apple-touch-icon.png';
-import './images/android-chrome-512x512.png';
-import './images/android-chrome-192x192.png';
-import './images/favicon-32x32.png';
-import './images/favicon.ico';
-import './images/favicon-16x16.png';
-import './site.webmanifest';
 import "./scripts/game.js";
 
-import './images/red-racer-dudette.jpg';
-import './images/snow-fox-dudette.jpg';
-import './images/ice-queen-dudette.jpg';
-import './images/powder-pro-dudette.jpg';
-import './images/half-pipe-dudette.jpg';
-import './images/shred-queen-dudette.jpg';
-
-import './images/red-racer-dude.jpg';
-import './images/snow-fox-dude.jpg';
-import './images/ice-queen-dude.jpg';
-import './images/powder-pro-dude.jpg';
-import './images/half-pipe-dude.jpg';
-import './images/shred-queen-dude.jpg';
+import './images/skier-1-m.jpg';
+import './images/skier-2-m.jpg';
+import './images/skier-3-m.jpg';
+import './images/snowboarder-1-m.jpg';
+import './images/snowboarder-2-m.jpg';
+import './images/snowboarder-3-m.jpg';
+import './images/skier-1-f.jpg';
+import './images/skier-2-f.jpg';
+import './images/skier-3-f.jpg';
+import './images/snowboarder-1-f.jpg';
+import './images/snowboarder-2-f.jpg';
+import './images/snowboarder-3-f.jpg';
 
 import './images/timber-valley.png';
 

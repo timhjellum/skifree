@@ -102,12 +102,12 @@ function makeSnowboarderFrames(jc,pc,hc,bc){
   };
 }
 const CHARACTERS=[
-  {name:'Red Racer',  type:'Skier',       emoji:'⛷️',photo:{dude:'images/red-racer-dude.jpg',    dudette:'images/red-racer-dudette.jpg'},   frames:makeSkierFrames('#cc2211','#2244cc','#cc2211','#111133')},
-  {name:'Snow Fox',   type:'Skier',       emoji:'⛷️',photo:{dude:'images/snow-fox-dude.jpg',      dudette:'images/snow-fox-dudette.jpg'},    frames:makeSkierFrames('#ee7700','#225500','#ee7700','#442200')},
-  {name:'Ice Queen',  type:'Skier',       emoji:'⛷️',photo:{dude:'images/ice-queen-dude.jpg',     dudette:'images/ice-queen-dudette.jpg'},   frames:makeSkierFrames('#6633cc','#cc88ff','#cc88ff','#220055')},
-  {name:'Powder Pro', type:'Snowboarder', emoji:'🏂',photo:{dude:'images/powder-pro-dude.jpg',    dudette:'images/powder-pro-dudette.jpg'},  frames:makeSnowboarderFrames('#1166cc','#ff6600','#1166cc','#cc4400')},
-  {name:'Half-Pipe',  type:'Snowboarder', emoji:'🏂',photo:{dude:'images/half-pipe-dude.jpg',     dudette:'images/half-pipe-dudette.jpg'},   frames:makeSnowboarderFrames('#22aa44','#222222','#ffcc00','#005522')},
-  {name:'Shred Queen',type:'Snowboarder', emoji:'🏂',photo:{dude:'images/shred-queen-dude.jpg',   dudette:'images/shred-queen-dudette.jpg'}, frames:makeSnowboarderFrames('#cc1166','#ffffff','#cc1166','#880033')},
+  {id:'skier-1', name:'Skier 1', type:'Skier', emoji:'⛷️', photo:{dude:'images/skier-1-m.jpg', dudette:'images/skier-1-f.jpg'}, frames:makeSkierFrames('#cc2211','#2244cc','#cc2211','#111133')},
+  {id:'skier-2', name:'Skier 2', type:'Skier', emoji:'⛷️', photo:{dude:'images/skier-2-m.jpg', dudette:'images/skier-2-f.jpg'}, frames:makeSkierFrames('#ee7700','#225500','#ee7700','#442200')},
+  {id:'skier-3', name:'Skier 3', type:'Skier', emoji:'⛷️', photo:{dude:'images/skier-3-m.jpg', dudette:'images/skier-3-f.jpg'}, frames:makeSkierFrames('#6633cc','#cc88ff','#cc88ff','#220055')},
+  {id:'snowboarder-1', name:'Snowboarder 1', type:'Snowboarder', emoji:'🏂', photo:{dude:'images/snowboarder-1-m.jpg', dudette:'images/snowboarder-1-f.jpg'}, frames:makeSnowboarderFrames('#1166cc','#ff6600','#1166cc','#cc4400')},
+  {id:'snowboarder-2', name:'Snowboarder 2', type:'Snowboarder', emoji:'🏂', photo:{dude:'images/snowboarder-2-m.jpg', dudette:'images/snowboarder-2-f.jpg'}, frames:makeSnowboarderFrames('#22aa44','#222222','#ffcc00','#005522')},
+  {id:'snowboarder-3', name:'Snowboarder 3', type:'Snowboarder', emoji:'🏂', photo:{dude:'images/snowboarder-3-m.jpg', dudette:'images/snowboarder-3-f.jpg'}, frames:makeSnowboarderFrames('#cc1166','#ffffff','#cc1166','#880033')},
 ];
 const builtChars=CHARACTERS.map(ch=>{const fc={};for(const[fn,px]of Object.entries(ch.frames))fc[fn]=buildPixelCanvas(px,P);return{...ch,fc};});
 const yetiPixels=[{dx:-2,dy:3,c:'#dde'},{dx:-1,dy:3,c:'#dde'},{dx:0,dy:3,c:'#dde'},{dx:1,dy:3,c:'#dde'},{dx:2,dy:3,c:'#dde'},{dx:-3,dy:2,c:'#dde'},{dx:-2,dy:2,c:'#eef'},{dx:-1,dy:2,c:'#eef'},{dx:0,dy:2,c:'#eef'},{dx:1,dy:2,c:'#eef'},{dx:2,dy:2,c:'#eef'},{dx:3,dy:2,c:'#dde'},{dx:-3,dy:1,c:'#dde'},{dx:-2,dy:1,c:'#eef'},{dx:-1,dy:1,c:'#eef'},{dx:0,dy:1,c:'#eef'},{dx:1,dy:1,c:'#eef'},{dx:2,dy:1,c:'#eef'},{dx:3,dy:1,c:'#dde'},{dx:-2,dy:0,c:'#dde'},{dx:-1,dy:0,c:'#eef'},{dx:0,dy:0,c:'#eef'},{dx:1,dy:0,c:'#eef'},{dx:2,dy:0,c:'#dde'},{dx:-4,dy:1,c:'#ccd'},{dx:-4,dy:2,c:'#ccd'},{dx:4,dy:1,c:'#ccd'},{dx:4,dy:2,c:'#ccd'},{dx:-2,dy:-1,c:'#dde'},{dx:-1,dy:-1,c:'#eef'},{dx:0,dy:-1,c:'#eef'},{dx:1,dy:-1,c:'#eef'},{dx:2,dy:-1,c:'#dde'},{dx:-2,dy:-2,c:'#eef'},{dx:-1,dy:-2,c:'#eef'},{dx:0,dy:-2,c:'#eef'},{dx:1,dy:-2,c:'#eef'},{dx:2,dy:-2,c:'#eef'},{dx:-2,dy:-3,c:'#dde'},{dx:-1,dy:-3,c:'#eef'},{dx:0,dy:-3,c:'#eef'},{dx:1,dy:-3,c:'#eef'},{dx:2,dy:-3,c:'#dde'},{dx:-1,dy:-2,c:'#ff2200'},{dx:1,dy:-2,c:'#ff2200'},{dx:-1,dy:-1,c:'#ffffff'},{dx:0,dy:-1,c:'#aa4400'},{dx:1,dy:-1,c:'#ffffff'},{dx:-2,dy:4,c:'#aab'},{dx:-1,dy:4,c:'#aab'},{dx:1,dy:4,c:'#aab'},{dx:2,dy:4,c:'#aab'}];
@@ -118,26 +118,50 @@ let gender='dude';
 document.getElementById('overlay').addEventListener('change', function(e){
   if(e.target && e.target.name==='gender'){
     gender=e.target.value;
-    buildCharGrid();
+    document.querySelectorAll('#charGrid .char-card:not(.button) img').forEach((img,i)=>{img.style.display='';img.src=builtChars[i].photo[gender];});
   }
 });
+function selectChar(i,card){
+  document.querySelectorAll('#charGrid .char-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');selectedChar=i;
+}
 function buildCharGrid(){
   const grid=document.getElementById('charGrid');grid.innerHTML='';
-  builtChars.forEach((ch,i)=>{
+  const cards=builtChars.map((ch,i)=>{
     const card=document.createElement('div');
     card.className='char-card'+(i===selectedChar?' selected':'');
-    card.onclick=()=>{document.querySelectorAll('.char-card').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');selectedChar=i;};
+    card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-label',ch.name+' ('+ch.type+')');
+    card.onclick=()=>selectChar(i,card);
+    card.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectChar(i,card);}};
     const img=document.createElement('img');
-    img.src=ch.photo[gender];
-    img.alt=ch.name;
-    img.className='char-photo';
+    img.src=ch.photo[gender];img.alt=ch.name;img.className='char-photo';img.draggable=false;
     img.onerror=function(){this.style.display='none';};
     card.appendChild(img);
-    const nm=document.createElement('div');nm.className='char-name';nm.textContent=ch.emoji+' '+ch.name;card.appendChild(nm);
-    const tp=document.createElement('div');tp.className='char-type';tp.textContent=ch.type;card.appendChild(tp);
-    grid.appendChild(card);
+    return card;
   });
+  // Start button sits at the point of the V
+  const btnCard=document.createElement('div');btnCard.className='char-card button';
+  const btn=document.createElement('button');btn.id='startBtn';btn.type='button';btn.className='start-game';btn.textContent='Start';
+  btn.onclick=startGame;btnCard.appendChild(btn);
+  const order=[cards[0],cards[1],cards[2],btnCard,cards[3],cards[4],cards[5]];
+  order.forEach((el,slot)=>{el.style.setProperty('--d',(slot*110)+'ms');grid.appendChild(el);});
+  // Gender picker floats in the hollow of the V
+  const cap=document.createElement('div');cap.id='charCaption';cap.className='char-caption';
+  cap.innerHTML='<div class="cap-title">Choose your <span class="nowrap">Dude or Dude-ette</span></div>'+
+    '<div class="gender-select" role="radiogroup" aria-label="Dude or Dude-ette">'+
+    '<label><input type="radio" name="gender" value="dude"'+(gender==='dude'?' checked':'')+'> Dude</label>'+
+    '<label><input type="radio" name="gender" value="dudette"'+(gender==='dudette'?' checked':'')+'> Dude-ette</label></div>';
+  grid.appendChild(cap);
 }
+// If the selected character gets hidden by a smaller breakpoint, fall back to the first visible one
+function ensureVisibleSelection(){
+  const cards=[...document.querySelectorAll('#charGrid .char-card:not(.button)')];
+  const sel=cards[selectedChar];
+  if(!sel||sel.offsetParent!==null)return;
+  const i=cards.findIndex(c=>c.offsetParent!==null);
+  if(i>=0)selectChar(i,cards[i]);
+}
+window.addEventListener('resize',ensureVisibleSelection);
 buildCharGrid();
 buildLevelListDisplay();
 
@@ -283,12 +307,11 @@ function showGameOver(){
   saveHighScore(score);
   const isNew=Math.floor(score)>0&&score>=highScore;
   const ov=document.getElementById('overlay');ov.style.display='flex';
-  ov.innerHTML='<h2>💀 Wiped Out!</h2><p style="color:#1a6aaa;font-weight:700;margin-bottom:6px">Reached: '+getLevelConfig().name+'</p><p>Score: '+Math.floor(score)+'</p><p>Distance: '+Math.floor(distance)+'m</p>'+(isNew?'<p style="color:#cc8800;font-weight:700;margin:6px 0">🏆 New High Score!</p>':'')+'<p style="color:#cc8800;font-size:13px;margin-bottom:16px">Best: '+Math.floor(Math.max(score,highScore))+'</p><p style="margin-bottom:20px">'+(yetiActive?'The yeti got you...':'Better luck next time!')+'</p><button id="startBtn" onclick="restartGame()">Play Again</button>';
+  ov.innerHTML='<h2>💀 Wiped Out!</h2><p style="color:#1a6aaa;font-weight:700;margin-bottom:6px">Reached: '+getLevelConfig().name+'</p><p>Score: '+Math.floor(score)+'</p><p>Distance: '+Math.floor(distance)+'m</p>'+(isNew?'<p style="color:#cc8800;font-weight:700;margin:6px 0">🏆 New High Score!</p>':'')+'<p style="color:#cc8800;font-size:13px;margin-bottom:16px">Best: '+Math.floor(Math.max(score,highScore))+'</p><p style="margin-bottom:20px">'+(yetiActive?'The yeti got you...':'Better luck next time!')+'</p><button id="startBtn" class="start-game" onclick="restartGame()">Play Again</button>';
 }
 function restartGame(){
   const ov=document.getElementById('overlay');
-  const genderChecks=gender==='dudette'?['','checked']:['checked',''];
-  ov.innerHTML='<h2>⛷ SkiFree</h2><div class="sub">Choose your character</div><div class="highscore-banner" id="titleHighScore"></div><div class="gender-select"><label><input type="radio" name="gender" value="dude" '+genderChecks[0]+'> Dude</label><label><input type="radio" name="gender" value="dudette" '+genderChecks[1]+'> Dude-ette</label></div><div class="char-grid" id="charGrid"></div><div id="levelList"></div><p class="tip">Mouse or arrow keys &middot; Reach 1000 pts or 2000m to advance!</p><button id="startBtn" onclick="startGame()">Ski!</button>';
+  ov.innerHTML='<h2>⛷ SkiFree</h2><div class="highscore-banner" id="titleHighScore"></div><div class="char-grid" id="charGrid"></div><div id="levelList"></div><p class="tip">Mouse or arrow keys &middot; Reach 1000 pts or 2000m to advance!</p>';
   buildCharGrid();updateHighScoreDisplay();buildLevelListDisplay();
 }
 

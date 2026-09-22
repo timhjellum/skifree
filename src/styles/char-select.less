@@ -1,0 +1,209 @@
+// Character select — V layout (from codepen gbppKVO)
+// Skiers descend on the left, snowboarders on the right, Start sits at the point.
+
+:root {
+  --glow-color: rgba(186, 11, 202, 0.5);
+  --arcade-font: "PressStart2P-Regular", "Press Start 2P", monospace;
+}
+
+.char-grid {
+  // Wide: 3 skiers + Start + 3 riders (7 columns)
+  --n: 7;
+  --v-w: min(calc(100vw - 40px), 900px);
+  --col: calc(var(--v-w) / var(--n));
+  --ring: clamp(2px, calc(var(--col) * 0.035), 5px);
+
+  display: grid;
+  grid-template-columns: repeat(var(--n), var(--col));
+  grid-template-rows: repeat(4, calc(var(--col) * 0.5));
+  width: var(--v-w);
+  max-width: none;
+  gap: 0;
+  margin: 1.5em 0 0.5em;
+  padding-bottom: calc(var(--col) * 0.45); // last row's card overflows its track
+  position: relative;
+  z-index: 100;
+
+  // Tablet: 2 skiers + Start + 2 riders
+  @media (max-width: 1023px) {
+    --n: 5;
+    --v-w: min(calc(100vw - 40px), 640px);
+    grid-template-rows: repeat(3, calc(var(--col) * 0.5));
+    .char-card:nth-child(3), .char-card:nth-child(7) { display: none; }
+    .char-card:nth-child(1) { grid-area: 1 / 1; }
+    .char-card:nth-child(2) { grid-area: 2 / 2; }
+    .char-card:nth-child(4) { grid-area: 3 / 3; }
+    .char-card:nth-child(5) { grid-area: 2 / 4; }
+    .char-card:nth-child(6) { grid-area: 1 / 5; }
+    .char-caption { grid-area: 1 / 2 / 2 / 5; }
+  }
+
+  // Mobile: 1 skier + Start + 1 rider
+  @media (max-width: 599px) {
+    --n: 3;
+    --v-w: min(calc(100vw - 40px), 360px);
+    grid-template-rows: repeat(2, calc(var(--col) * 0.5));
+    .char-card:nth-child(2), .char-card:nth-child(6) { display: none; }
+    .char-card:nth-child(1) { grid-area: 1 / 1; }
+    .char-card:nth-child(4) { grid-area: 2 / 2; }
+    .char-card:nth-child(5) { grid-area: 1 / 3; }
+    // Caption moves below the V — too narrow between the two portraits
+    .char-caption { grid-area: 3 / 1 / 4 / 4; margin-top: calc(var(--col) * 0.55); }
+    padding-bottom: 0;
+  }
+}
+
+.char-card {
+  position: relative;
+  justify-self: center;
+  width: calc(var(--col) * 0.86);
+  aspect-ratio: 1;
+  padding: 0;
+  border: var(--ring) solid #fff;
+  border-radius: 50%;
+  background: #0a1a40;
+  overflow: clip;
+  cursor: pointer;
+  opacity: 0;
+  animation: charDrop 500ms cubic-bezier(.34, 1.56, .64, 1) var(--d, 0ms) forwards;
+  transition: scale 400ms ease, filter 400ms ease;
+
+  .char-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    pointer-events: none;
+  }
+
+  &:focus-visible { outline: 3px dashed #fff; outline-offset: 4px; }
+
+  // V placement
+  &:nth-child(1) { grid-area: 1 / 1; }
+  &:nth-child(2) { grid-area: 2 / 2; }
+  &:nth-child(3) { grid-area: 3 / 3; }
+  &:nth-child(4) { grid-area: 4 / 4; }
+  &:nth-child(5) { grid-area: 3 / 5; }
+  &:nth-child(6) { grid-area: 2 / 6; }
+  &:nth-child(7) { grid-area: 1 / 7; }
+
+  // Hover zoom only on devices that really hover (avoids sticky zoom after a tap)
+  @media (hover: hover) {
+    &:hover { scale: 1.5; z-index: 3; }
+    &.button:hover { scale: 1.2; }
+  }
+}
+
+// Blur/shrink the other portraits while one is hovered
+@media (hover: hover) {
+  .char-grid:has(.char-card:not(.button):hover) .char-card:not(:hover) {
+    filter: blur(1px) brightness(0.75);
+    scale: 0.85;
+  }
+}
+
+.char-card.selected {
+  z-index: 2;
+  box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px var(--glow-color), 0 0 15px var(--glow-color),
+    0 0 20px var(--glow-color), 0 0 25px var(--glow-color);
+  animation: charDrop 500ms cubic-bezier(.34, 1.56, .64, 1) var(--d, 0ms) forwards,
+    charBlink 0.7s ease-in-out infinite alternate;
+}
+
+// Caption floats in the hollow of the V
+.char-caption {
+  grid-area: 1 / 3 / 3 / 6;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  text-align: center;
+  z-index: 1;
+
+  .cap-title {
+    font-family: var(--arcade-font);
+    font-size: clamp(8px, calc(var(--col) * 0.11), 15px);
+    line-height: 1.6;
+    color: #fff;
+    text-shadow: 0 0 8px var(--glow-color);
+    .nowrap { white-space: nowrap; }
+  }
+
+  .gender-select {
+    white-space: nowrap;
+    justify-content: center;
+    gap: 1.4em;
+    margin: 0;
+    font-family: "VT323-Regular", "VT323", monospace;
+    font-size: clamp(18px, calc(var(--col) * 0.17), 26px);
+    color: #b8cbe8;
+
+    label { cursor: pointer; gap: 0.35em; }
+    label:has(input:checked) { color: #fff; }
+    input { width: 1em; height: 1em; margin: 0; }
+  }
+}
+
+// Arcade start button (also used for Play Again)
+.start-game {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 100vw;
+  background-color: #ccc;
+  box-shadow: 0 -2px 0 3px #bbb inset, 0 5px 5px rgba(0, 0, 0, 0.17), 0 15px rgba(255, 255, 255, 0.32) inset;
+  color: #333;
+  font-family: var(--arcade-font);
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.25s, box-shadow 0.25s, color 0.25s;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #0ec518;
+    box-shadow: 0 -2px 0 3px #0b9512 inset, 0 5px 5px rgba(0, 7, 1, 0.17), 0 15px rgba(255, 255, 255, 0.25) inset;
+    color: #fff;
+    outline: none;
+  }
+}
+
+.char-card.button {
+  cursor: default;
+
+  .start-game {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: clamp(7px, calc(var(--col) * 0.1), 14px);
+  }
+}
+
+// Readable text on the navy title screen
+#overlay {
+  // Sit the content below the logo art (logo is 2146x733, bottom ~20% fades out)
+  justify-content: safe center;
+  padding-top: calc(min(100vw, 2146px) * 733 / 2146 * 0.78) !important;
+  .sub, .gender-select, #levelList, p.tip { color: #b8cbe8; }
+  .gender-select input { accent-color: #ba0bca; }
+}
+
+@keyframes charDrop {
+  from { opacity: 0; translate: 0 -30px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+@keyframes charBlink {
+  to {
+    box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 15px var(--glow-color), 0 0 20px var(--glow-color),
+      0 0 25px var(--glow-color), 0 0 30px var(--glow-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .char-card, .char-card.selected { animation: none; opacity: 1; }
+}

@@ -1,10 +1,13 @@
-@layer base, scoreboard, hotdog, start-button;
+@layer game, base, scoreboard, hotdog, start-button;
 
 @import './src/styles/base.less';
+@layer game {
 @import './src/styles/game.less';
+}
 //@import './src/styles/hotdog.less';
 @import './src/styles/start-button.less';
 @import './src/styles/title.less';
+@import './src/styles/char-select.less';
 @import './src/styles/variables.less';
 
 @font-face {
