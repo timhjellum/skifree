@@ -1,26 +1,38 @@
-# How Deep is the Ocean?
+# Timber Valley #
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/37c5556f-280c-4904-8d49-44f210d1cc39/deploy-status)](https://app.netlify.com/projects/ski-free/deploys)
+https://timber-mountain.netlify.app/
 
-## Running Locally
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v14+)
-
-### Installation
-
-```bash
-git clone https://github.com/timhjellum/skifree
-cd skifree
-npm install
-npm run watch
-```
-
-### Building & Deploying
-
-```bash
-npm run build       # Production build to dist/
-npm run deploy      # Build + deploy to GitHub Pages
-```
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c6752b5a-72f9-4191-bf02-1a716b976121/deploy-status)](https://app.netlify.com/projects/timber-valley/deploys)
+<br><br><br>
+![Timber Mountain](images/og-image.jpg)
+<br><br><br>
+<figure>
+<img src="images/apple-touch-icon.png" alt="" />
+  <figcaption>apple-touch-icon.png (180x180) icon for Android devices</figcaption>
+</figure>
+<br><br><br>
+<figure>
+<img src="images/icon-192.png" alt="" width="192" height="192" />
+  <figcaption>icon-192x192.png (512?512) icon for Android devices</figcaption>
+</figure>
+<br><br><br>
+<figure><img src="images/icon-512.png" alt="" width="512" height="512" />
+    <figcaption>icon-512.png (512?512) icon for Android devices</figcaption>
+</figure>
+<br><br><br>
+<figure>
+<img src="images/--icon-mask.png" alt="" width="512" height="512" />
+  <figcaption>icon-mask.png (512x512) - mask is simulated</figcaption>
+</figure>
+<br>
+<br>
+<br>
+<figure>
+  <img src="/favicon.ico" alt="" width="32" height="32" />
+  <figcaption>favicon.ico</figcaption>
+</figure>
+<br><br><br>
+<figure><img src="images/icon.svg" alt="" width="32" height="32" />
+  <figcaption>icon.svg (vector)</figcaption>
+</figure>
+<br><br><br>
